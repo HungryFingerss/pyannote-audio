@@ -102,7 +102,7 @@ class Inference(BaseInference):
                 model,
                 map_location=device,
                 strict=False,
-                use_auth_token=use_auth_token,
+                token=use_auth_token,
             )
         )
 

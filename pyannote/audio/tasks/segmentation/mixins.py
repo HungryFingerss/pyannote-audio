@@ -31,7 +31,13 @@ import torch
 from pyannote.database.protocol.protocol import Scope, Subset
 from pytorch_lightning.loggers import MLFlowLogger, TensorBoardLogger
 from torch.utils.data._utils.collate import default_collate
-from torchaudio import AudioMetaData
+try:
+    from torchaudio import AudioMetaData
+except ImportError:
+    # torchaudio 2.9+ removed AudioMetaData. Stub it — only used in
+    # SegmentationTask.get_file() (training path), never at inference.
+    class AudioMetaData:
+        def __init__(self, **kwargs): self.__dict__.update(kwargs)
 from torchmetrics import Metric
 from torchmetrics.classification import BinaryAUROC, MulticlassAUROC, MultilabelAUROC
 

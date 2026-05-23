@@ -99,7 +99,7 @@ class Pipeline(_Pipeline):
                     # proxies=None,
                     # etag_timeout=10,
                     # resume_download=False,
-                    use_auth_token=use_auth_token,
+                    token=use_auth_token,
                     # local_files_only=False,
                     # legacy_cache_layout=False,
                 )
