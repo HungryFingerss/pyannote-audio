@@ -20,4 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-__import__("pkg_resources").declare_namespace(__name__)
+# dog-ai P0.R5.1 patch (2026-05-28): replaced setuptools pkg_resources.declare_namespace
+# with stdlib pkgutil.extend_path for setuptools>=81 compat (pkg_resources removed).
+# Same semantic — both extend __path__ to support namespace packages across distributions.
+from pkgutil import extend_path
+
+__path__ = extend_path(__path__, __name__)
